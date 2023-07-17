@@ -1,39 +1,57 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
   const [tasks, setTasks] = useState<string[]>([]);
   const todoList = tasks.map((t: string) => <p>{t}</p>);
+  const [task, setTask] = useState<string>('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // Prevent the browser from reloading the page
     e.preventDefault();
 
-    // Read the form data
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-    const formJson = Object.fromEntries(formData.entries());
-    const newTask = formJson['task'].toString();
-
-    if (newTask !== '') setTasks([...tasks, newTask]);
+    if (task !== '') {
+      setTasks([...tasks, task]);
+      setTask('');
+    }
   };
 
+  // TODO: remove
+  useEffect(() => {
+    console.log('Tasks:', tasks);
+  }, [tasks]);
+
   return (
-    <div className="py-2 px-3 sm:px-0 max-w-lg m-auto space-y-4">
-      <div className="text-center font-semibold text-2xl">Todo App</div>
-      <form onSubmit={handleSubmit} className="space-x-1">
+    <div className="flex h-screen flex-col items-center justify-between p-2 font-sans text-white">
+      <div className="flex flex-1 flex-col justify-center">
+        <h1 className="text-center font-cursive text-5xl drop-shadow-lg sm:text-6xl">
+          Todo List
+        </h1>
+      </div>
+      <form
+        onSubmit={handleSubmit}
+        className="flex w-full max-w-lg flex-1 flex-col justify-center space-y-4"
+      >
         <label>
-          Task:{' '}
+          {/* Task:{' '} */}
           <input
             type="text"
             name="task"
-            className="p-1 border-2 border-black rounded"
+            placeholder="Enter first task"
+            value={task}
+            onChange={(e) => setTask(e.target.value)}
+            className="shadow- w-full rounded-lg bg-white p-3 font-semibold text-blue outline-blue placeholder:text-blue/50"
           />
         </label>
-        <button type="submit" className="p-1.5 bg-yellow-500 rounded">
+        <button
+          type="submit"
+          disabled={!task}
+          className="w-full rounded-lg bg-mint p-2.5 text-lg font-bold shadow-md outline-blue hover:bg-mint-light active:bg-mint-dark active:shadow-none disabled:opacity-75"
+        >
           Create Task
         </button>
       </form>
-      <ul className="space-y-2">{todoList}</ul>
+      {/* <ul className="space-y-2">{todoList}</ul> */}
+      <div className="flex-1" />
     </div>
   );
 }
