@@ -1,60 +1,27 @@
 import { useState, useEffect } from 'react';
-
-type elem = {
-  id: string;
-  name: string;
-};
+import { Task, TaskData } from './components/task';
 
 function App() {
-  const [taskList, setTaskList] = useState<elem[]>([]);
+  const [taskList, setTaskList] = useState<TaskData[]>([]);
   const [task, setTask] = useState<string>('');
-  const todoList = taskList.map((t: elem) => (
-    <li
+  const todoList = taskList.map((t: TaskData) => (
+    <Task
       key={t.id}
-      className="group flex items-center space-x-2 rounded-md p-2 hover:bg-blue-dark/75"
-    >
-      {/* TODO: Fix checkbox styling */}
-      {/* <div className="relative flex items-center">
-        <input
-          type="checkbox"
-          name="task-check"
-          id={t.id}
-          className="h-5 w-5 appearance-none rounded bg-white checked:bg-mint hover:checked:bg-mint-light active:bg-mint-dark"
-        />
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={3}
-          stroke="currentColor"
-          className="absolute inset-0 h-5 w-5"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M4.5 12.75l6 6 9-13.5"
-          />
-        </svg>
-      </div> */}
-      <input
-        type="checkbox"
-        name="task-check"
-        id="task-check"
-        className="peer h-6 w-6 accent-mint"
-      />
-      <span className="flex-1 text-lg font-semibold peer-checked:text-white/60">
-        {t.name}
-      </span>
-      <button
-        onClick={() => {
-          const arr = taskList.filter((item) => item.id !== t.id);
-          setTaskList(arr);
-        }}
-        className="hidden h-6 w-6 rotate-45 rounded-full bg-white font-bold text-blue-dark group-hover:block"
-      >
-        +
-      </button>
-    </li>
+      data={t}
+      onChange={() => {
+        const arr = taskList.map((item) => {
+          if (item.id === t.id) {
+            item.complete = !item.complete;
+          }
+          return item;
+        });
+        setTaskList(arr);
+      }}
+      onClose={() => {
+        const arr = taskList.filter((item) => item.id !== t.id);
+        setTaskList(arr);
+      }}
+    />
   ));
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -62,8 +29,8 @@ function App() {
     e.preventDefault();
 
     if (task !== '') {
-      // TODO: fix id
-      setTaskList([...taskList, { id: task, name: task }]);
+      const d = Date.now();
+      setTaskList([...taskList, { id: d, name: task }]);
       setTask('');
     }
   };
