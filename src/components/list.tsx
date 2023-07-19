@@ -10,6 +10,7 @@ export const List = ({ children }: React.PropsWithChildren) => {
 
   const handleClose = () => {
     dialogReg.current?.close();
+    setTask('');
   };
 
   return (
