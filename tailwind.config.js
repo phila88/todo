@@ -4,7 +4,7 @@ export default {
   theme: {
     colors: {
       blue: { DEFAULT: '#227C9D', dark: '#17566d' },
-      mint: { light: '#19ce9b', DEFAULT: '#00C990', dark: '#00b481' },
+      mint: '#00C990',
       white: '#FEF9EF',
     },
     extend: {

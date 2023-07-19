@@ -24,7 +24,7 @@ export const List = ({ children }: React.PropsWithChildren) => {
         <div className="m-auto w-full max-w-2xl">
           <button
             onClick={handleOpen}
-            className="w-full rounded-lg bg-mint p-2.5 text-lg font-bold shadow-md outline-blue hover:bg-mint-light active:bg-mint-dark active:shadow-none disabled:opacity-80 sm:p-3.5 sm:text-2xl"
+            className="w-full rounded-lg bg-mint p-2.5 text-lg font-bold shadow-md outline-blue hover:brightness-105 active:shadow-none active:brightness-95 disabled:opacity-80 sm:p-3.5 sm:text-2xl"
           >
             Create Task
           </button>
@@ -48,13 +48,13 @@ export const List = ({ children }: React.PropsWithChildren) => {
           <button
             disabled={task === ''}
             onClick={handleClose}
-            className="w-full rounded-lg bg-mint p-2.5 text-lg font-bold text-white shadow-md outline-blue hover:bg-mint-light active:bg-mint-dark active:shadow-none disabled:opacity-75 sm:p-3.5 sm:text-2xl"
+            className="w-full rounded-lg bg-mint p-2.5 text-lg font-bold text-white shadow-md outline-blue hover:brightness-105 active:shadow-none active:brightness-95 disabled:opacity-75 sm:p-3.5 sm:text-2xl"
           >
             Create
           </button>
           <button
             onClick={handleClose}
-            className="w-full rounded-lg bg-blue-dark p-2.5 text-lg font-bold text-white shadow-md outline-blue hover:brightness-110 active:shadow-none active:brightness-90 sm:p-3.5 sm:text-2xl"
+            className="w-full rounded-lg bg-blue-dark p-2.5 text-lg font-bold text-white shadow-md outline-blue hover:brightness-105 active:shadow-none active:brightness-95 sm:p-3.5 sm:text-2xl"
           >
             Cancel
           </button>

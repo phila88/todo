@@ -18,7 +18,7 @@ export const Task = ({ data, onChange, onClose }: Props) => (
           type="checkbox"
           name="task-check"
           id={t.id}
-          className="h-5 w-5 appearance-none rounded bg-white checked:bg-mint hover:checked:bg-mint-light active:bg-mint-dark"
+          className="h-5 w-5 appearance-none rounded bg-white checked:bg-mint hover:checked:brightness-105 active:brightness-95"
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
