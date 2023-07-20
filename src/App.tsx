@@ -74,7 +74,7 @@ function App() {
       <div className="flex-1" />
     </div>
   ) : (
-    <List>{todoList}</List>
+    <List addTask={(task) => setTaskList([...taskList, task])}>{todoList}</List>
   );
 }
 

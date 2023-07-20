@@ -44,7 +44,7 @@ export const Task = ({ data, onChange, onClose }: Props) => (
       onChange={onChange}
     />
     <span className="flex-1 text-lg font-semibold peer-checked:text-white/60">
-      {data.name}
+      {data.complete ? <del>{data.name}</del> : data.name}
     </span>
     <button
       onClick={onClose}
