@@ -18,7 +18,7 @@ export const Task = ({ data, onChange, onClose }: Props) => (
     <Checkbox.Root
       checked={data.complete}
       onCheckedChange={onChange}
-      id="c1"
+      id={data.id.toString()}
       className={`flex h-5 w-5 appearance-none items-center justify-center rounded hover:brightness-105 active:brightness-95 ${
         data.complete ? 'bg-mint' : 'bg-white'
       } outline-blue checked:bg-white`}
@@ -28,7 +28,7 @@ export const Task = ({ data, onChange, onClose }: Props) => (
       </Checkbox.Indicator>
     </Checkbox.Root>
     <label
-      htmlFor="c1"
+      htmlFor={data.id.toString()}
       className={`flex-1 text-lg font-medium ${
         data.complete ? 'opacity-75' : ''
       }`}

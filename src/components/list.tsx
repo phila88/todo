@@ -1,4 +1,5 @@
 import { PropsWithChildren, useRef, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 import { TaskData } from './task';
 
 type Props = {
@@ -6,11 +7,12 @@ type Props = {
 };
 
 export const List = ({ addTask, children }: PropsWithChildren<Props>) => {
-  const dialogReg = useRef<HTMLDialogElement>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
   const [task, setTask] = useState<string>('');
+  const { ref: intersectRef, inView } = useInView();
 
   const handleOpen = () => {
-    dialogReg.current?.showModal();
+    dialogRef.current?.showModal();
   };
 
   const handleAddTask = (e: React.FormEvent<HTMLFormElement>) => {
@@ -24,19 +26,22 @@ export const List = ({ addTask, children }: PropsWithChildren<Props>) => {
   };
 
   const handleClose = () => {
-    dialogReg.current?.close();
+    dialogRef.current?.close();
     setTask('');
   };
 
   return (
     <>
-      <div className="flex h-[100dvh] flex-col space-y-2 p-2">
+      <div ref={intersectRef} />
+
+      <header
+        className={`sticky top-0 z-10 space-y-2 p-2 transition ${
+          !inView ? 'bg-blue-dark/75 shadow-md backdrop-blur' : ''
+        }`}
+      >
         <h1 className="text-center font-cursive text-5xl drop-shadow-lg sm:text-6xl">
           Todo List
         </h1>
-        <div className="flex-1 space-y-3 overflow-y-auto">
-          <ul className="m-auto max-w-5xl space-y-2">{children}</ul>
-        </div>
         <div className="m-auto w-full max-w-2xl">
           <button
             onClick={handleOpen}
@@ -45,11 +50,16 @@ export const List = ({ addTask, children }: PropsWithChildren<Props>) => {
             Create Task
           </button>
         </div>
+      </header>
+
+      <div className="space-y-3">
+        <ul className="m-auto max-w-5xl space-y-2">{children}</ul>
       </div>
+
       <dialog
-        ref={dialogReg}
+        ref={dialogRef}
         onCancel={handleClose}
-        className="hidden w-[96%] max-w-3xl rounded-xl border-4 border-[#fff]/50 bg-blue p-4 backdrop:bg-[#000]/40 open:block sm:p-8"
+        className="hidden w-[96%] max-w-3xl rounded-xl border-4 border-[#fff]/50 bg-blue p-3 backdrop:bg-[#000]/40 open:block sm:p-8"
       >
         <form onSubmit={handleAddTask} className="flex flex-col space-y-5">
           <label className="text-center text-2xl font-bold text-white sm:text-3xl">
