@@ -1,12 +1,9 @@
 import { PropsWithChildren, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { TaskData } from './task';
+import { useStore } from '../store';
 
-type Props = {
-  addTask(task: TaskData): void;
-};
-
-export const List = ({ addTask, children }: PropsWithChildren<Props>) => {
+export const List = ({ children }: PropsWithChildren) => {
+  const { add } = useStore();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [task, setTask] = useState<string>('');
   const { ref: intersectRef, inView } = useInView();
@@ -19,8 +16,7 @@ export const List = ({ addTask, children }: PropsWithChildren<Props>) => {
     e.preventDefault();
 
     if (task !== '') {
-      const t: TaskData = { id: Date.now(), name: task };
-      addTask(t);
+      add({ id: Date.now(), name: task });
     }
     handleClose();
   };

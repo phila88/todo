@@ -1,29 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Task, TaskData } from './components/task';
+import { Task } from './components/task';
 import { List } from './components/list';
+import { TaskData } from './model';
+import { useStore } from './store';
 
 function App() {
-  const [taskList, setTaskList] = useState<TaskData[]>([]);
+  const { tasks, add } = useStore();
   const [task, setTask] = useState<string>('');
-  const todoList = taskList.map((t: TaskData) => (
-    <Task
-      key={t.id}
-      data={t}
-      onChange={() => {
-        const arr = taskList.map((item) => {
-          if (item.id === t.id) {
-            item.complete = !item.complete;
-          }
-          return item;
-        });
-        setTaskList(arr);
-      }}
-      onClose={() => {
-        const arr = taskList.filter((item) => item.id !== t.id);
-        setTaskList(arr);
-      }}
-    />
-  ));
+  const todoList = tasks.map((t: TaskData) => <Task key={t.id} data={t} />);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // Prevent the browser from reloading the page
@@ -31,17 +15,17 @@ function App() {
 
     if (task !== '') {
       const d = Date.now();
-      setTaskList([...taskList, { id: d, name: task }]);
+      add({ id: d, name: task });
       setTask('');
     }
   };
 
   // TODO: remove
   useEffect(() => {
-    console.log('Tasks:', taskList);
-  }, [taskList]);
+    console.log('Tasks:', tasks);
+  }, [tasks]);
 
-  return taskList.length === 0 ? (
+  return tasks.length === 0 ? (
     <div className="flex h-[100dvh] flex-col items-center justify-between p-2 font-sans">
       <div className="flex flex-1 flex-col justify-center">
         <h1 className="text-center font-cursive text-5xl drop-shadow-lg sm:text-6xl">
@@ -74,7 +58,7 @@ function App() {
       <div className="flex-1" />
     </div>
   ) : (
-    <List addTask={(task) => setTaskList([...taskList, task])}>{todoList}</List>
+    <List>{todoList}</List>
   );
 }
 
