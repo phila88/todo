@@ -36,17 +36,14 @@ function App() {
         onSubmit={handleSubmit}
         className="flex w-full max-w-2xl flex-1 flex-col justify-center space-y-5 sm:space-y-7"
       >
-        <label>
-          {/* Task:{' '} */}
-          <input
-            type="text"
-            name="task"
-            placeholder="Enter first task"
-            value={task}
-            onChange={(e) => setTask(e.target.value)}
-            className="w-full rounded-lg bg-white p-3 font-semibold text-blue shadow-md outline-blue placeholder:text-blue/50 sm:p-4 sm:text-lg"
-          />
-        </label>
+        <input
+          type="text"
+          name="task"
+          placeholder="Enter first task"
+          value={task}
+          onChange={(e) => setTask(e.target.value)}
+          className="w-full rounded-lg bg-white p-3 font-semibold text-blue shadow-md outline-blue placeholder:text-blue/50 sm:p-4 sm:text-lg"
+        />
         <button
           type="submit"
           disabled={!task}
@@ -55,7 +52,20 @@ function App() {
           Create Task
         </button>
       </form>
-      <div className="flex-1" />
+      <div className="flex flex-1 flex-col justify-end">
+        <span>
+          <a
+            target="_blank"
+            href="https://icons8.com/icon/9zYn1cnry6pn/simple-line-tick-or-checkmark-in-box"
+          >
+            Favicon
+          </a>{' '}
+          by{' '}
+          <a target="_blank" href="https://icons8.com">
+            Icons8
+          </a>
+        </span>
+      </div>
     </div>
   ) : (
     <List>{todoList}</List>
