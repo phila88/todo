@@ -41,14 +41,14 @@ export const List = ({ children }: PropsWithChildren) => {
         <div className="m-auto w-full max-w-2xl">
           <button
             onClick={handleOpen}
-            className="w-full rounded-lg bg-mint p-2.5 text-lg font-bold shadow-md outline-blue hover:brightness-105 active:shadow-none active:brightness-95 disabled:opacity-80 sm:p-3.5 sm:text-2xl"
+            className="w-full rounded-lg bg-mint p-2.5 text-lg font-bold shadow-md outline-blue transition hover:brightness-105 active:shadow-none active:brightness-95 disabled:opacity-80 sm:p-3.5 sm:text-2xl"
           >
             Create Task
           </button>
         </div>
       </header>
 
-      <div className="space-y-3">
+      <div className="space-y-3 p-2">
         <ul className="m-auto max-w-5xl space-y-2">{children}</ul>
       </div>
 
@@ -72,14 +72,14 @@ export const List = ({ children }: PropsWithChildren) => {
             <button
               type="submit"
               disabled={task === ''}
-              className="w-full rounded-lg bg-mint p-2.5 text-lg font-bold text-white shadow-md outline-blue hover:brightness-105 active:shadow-none active:brightness-95 disabled:opacity-75 sm:p-3.5 sm:text-2xl"
+              className="w-full rounded-lg bg-mint p-2.5 text-lg font-bold text-white shadow-md outline-blue transition enabled:hover:brightness-105 enabled:active:shadow-none enabled:active:brightness-95 disabled:opacity-75 sm:p-3.5 sm:text-2xl"
             >
               Create
             </button>
             <button
               type="button"
               onClick={handleClose}
-              className="w-full rounded-lg bg-blue-dark p-2.5 text-lg font-bold text-white shadow-md outline-blue hover:brightness-105 active:shadow-none active:brightness-95 sm:p-3.5 sm:text-2xl"
+              className="w-full rounded-lg bg-blue-dark p-2.5 text-lg font-bold text-white shadow-md outline-blue transition hover:brightness-105 active:shadow-none active:brightness-95 sm:p-3.5 sm:text-2xl"
             >
               Cancel
             </button>

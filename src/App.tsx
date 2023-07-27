@@ -50,7 +50,7 @@ function App() {
         <button
           type="submit"
           disabled={!task}
-          className="w-full rounded-lg bg-mint p-2.5 text-lg font-bold shadow-md outline-blue hover:brightness-105 active:shadow-none active:brightness-95 disabled:opacity-75 sm:p-3.5 sm:text-2xl"
+          className="w-full rounded-lg bg-mint p-2.5 text-lg font-bold shadow-md outline-blue transition enabled:hover:brightness-105 enabled:active:shadow-none enabled:active:brightness-95 disabled:opacity-75 sm:p-3.5 sm:text-2xl"
         >
           Create Task
         </button>
