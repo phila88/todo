@@ -62,6 +62,7 @@ export const List = ({ children }: PropsWithChildren) => {
             Enter task
           </label>
           <input
+            autoComplete="off"
             type="text"
             name="newTask"
             value={task}

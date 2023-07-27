@@ -37,6 +37,7 @@ function App() {
         className="flex w-full max-w-2xl flex-1 flex-col justify-center space-y-5 sm:space-y-7"
       >
         <input
+          autoComplete="off"
           type="text"
           name="task"
           placeholder="Enter first task"
