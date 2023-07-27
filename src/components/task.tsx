@@ -1,6 +1,6 @@
 import * as Checkbox from '@radix-ui/react-checkbox';
 import { CheckIcon } from '@radix-ui/react-icons';
-import { TaskData } from '../model';
+import { TaskData } from '../types';
 import { useStore } from '../store';
 
 type Props = {
