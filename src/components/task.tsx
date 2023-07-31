@@ -11,7 +11,7 @@ export const Task = ({ data }: Props) => {
   const { edit, remove } = useStore();
 
   return (
-    <li className="group flex items-center space-x-2 rounded-md p-2 transition hover:bg-blue-dark/75">
+    <li className="group flex items-center space-x-2 rounded-md p-2 transition focus-within:bg-blue-dark/75 hover:bg-blue-dark/75">
       <Checkbox.Root
         checked={data.complete}
         onCheckedChange={() => edit(data)}
@@ -24,6 +24,7 @@ export const Task = ({ data }: Props) => {
           <CheckIcon className="h-5 w-5" />
         </Checkbox.Indicator>
       </Checkbox.Root>
+
       <label
         htmlFor={data.id.toString()}
         className={`flex-1 text-lg font-medium transition ${
@@ -35,7 +36,7 @@ export const Task = ({ data }: Props) => {
 
       <button
         onClick={() => remove(data)}
-        className="hidden h-5 w-5 items-center justify-center rounded-full bg-white text-2xl font-medium leading-none text-blue transition hover:brightness-105 active:brightness-95 group-hover:flex"
+        className="invisible flex h-5 w-5 items-center justify-center rounded-full bg-white text-2xl font-medium leading-none text-blue transition hover:visible hover:brightness-105 active:brightness-95 group-focus-within:visible group-hover:visible"
       >
         {'\u00d7'}
       </button>
