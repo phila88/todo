@@ -90,3 +90,5 @@ export const List = ({ children }: PropsWithChildren) => {
     </>
   );
 };
+
+export default List;

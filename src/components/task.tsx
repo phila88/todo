@@ -43,3 +43,5 @@ export const Task = ({ data }: Props) => {
     </li>
   );
 };
+
+export default Task;

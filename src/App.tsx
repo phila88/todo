@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Task } from './components/task';
-import { List } from './components/list';
+import Task from './components/task';
+import List from './components/list';
 import { TaskData } from './types';
 import { useStore } from './store';
 
